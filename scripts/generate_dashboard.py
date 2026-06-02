@@ -52,7 +52,7 @@ plt.rcParams.update({
 })
 
 for excercise, metrics in data.items():
-    if len(metrics['dates'] < 2:
+    if len(metrics['dates']) < 2:
         continue
 
     clean_name = excercise.lower().replace(" ", "_").replace("/", "_")
