@@ -5,15 +5,12 @@ import matplotlib.pyplot as plt
 log_files = sorted(glob.glob('[0-9]*/*.md'))
 
 data = {}
-date_pattern = re.compile(r'### (\d{4}-d{2}-\d{2})')
+date_pattern = re.compile(r'###.*(\d{4}-\d{2}-\d{2})')
 excercise_pattern = re.compile(r'\* \*\*(.*?)\*\*')
 set_pattern = re.compile(r'(\d+)kg\s*x\s*(\d+)')
 
 current_date = None
 current_excercise = None
-
-
-print(log_files)
 
 for file_path in log_files:
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -62,11 +59,11 @@ for excercise, metrics in data.items():
     clean_name = excercise.lower().replace(" ", "_").replace("/", "_")
     fig, ax = plt.subplots(figsize=(6, 3.2))
 
-    ax.plot(metrics['dates'], metrics['max_weight'], marker='o', color='#d946ef', llinewidth=2, markersize=5)
+    ax.plot(metrics['dates'], metrics['max_weight'], marker='o', color='#d946ef', linewidth=2, markersize=5)
     ax.set_title(f'{excercise}', fontsize=11, fontweight='bold', pad=10)
     ax.grid(True, linestyle=':', alpha=0.3, color='#888888')
 
-    plt.autofmt_xdate()
+    fig.autofmt_xdate()
     plt.tight_layout()
 
     chart_path = f'public/assets/{clean_name}.png'
