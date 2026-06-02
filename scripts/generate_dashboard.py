@@ -37,7 +37,7 @@ for file_path in log_files:
                     if weight > data[current_excercise]['max_weight'][-1]:
                         data[current_excercise]['max_weight'][-1] = weight
 
-os.makedirs('public/assets', exitst_ok=True)
+os.makedirs('public/assets', exist_ok=True)
 html_charts = ""
 
 plt.rcParams.update({
