@@ -41,7 +41,7 @@ os.makedirs('public/assets', exist_ok=True)
 html_charts = ""
 
 plt.rcParams.update({
-    'font-family':      'Iosevka, monospace',
+    'font.family':      'Iosevka, monospace',
     'text.color':       '#e0e0e0',
     'axes.labelcolor':  '#a0a0a0',
     'axes.edgecolor':   '#333333',
