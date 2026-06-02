@@ -36,6 +36,7 @@ for file_path in log_files:
                 else:
                     if weight > data[current_excercise]['max_weight'][-1]:
                         data[current_excercise]['max_weight'][-1] = weight
+        f.close()
 
 os.makedirs('public/assets', exist_ok=True)
 html_charts = ""
@@ -76,68 +77,69 @@ for excercise, metrics in data.items():
     </div>
     """
 
-    html_content = f"""
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Workout Tracker</title>
-        <style>
-            body {{
-                font-family: "Iosevka", "Iosevka Term", monospace;
-                backgroud: #181818
-                color: #e0e0e0;
-                max-width: 950px;
-                margin: 40px auto;
-                padding: 0 20px;
-            }}
-            h1 {{
-                text-align: center;
-                color: #f43f5e;
-                font-weight: 600;
-                letter-spacing: -0.5px;
-            }}
-            .meta {{
-                text-align: center;
-                color: #71717a;
-                margin-bottom: 40px;
-                font-size: 0.9rem;
-            }}
-            .grid {{
-                display: grid;
-                grid-template-colums: repeat(auto-fit, minmax(420px, 1fr));
-                gap: 24px;
-            }}
-            .card {{
-                background: #1f1f1f;
-                border: 1px solid #2e2e2e;
-                border-radius: 6px;
-                padding: 20px;
-            }}
-            .card h2 {{
-                margin-top: 0;
-                font-size: 1.15rem;
-                color: #f4f4f5;
-                border-bottom: 1px solid #2e2e2e;
-                padding-bottom: 8px;
-            }}
-            img {{
-                max-width: 100%;
-                display: block
-                margin: 10px auto 0 auto;
-            }}
-        </style>
-    </head>
-    <body>
-        <h1>WORKOUT_TRACKER</h1>
-        <p class="meta">LAST_SYNC: {datetime.now().strftime('%Y-%m-%d %H:%M')}</p>
-        <div class="grid">
-            {html_charts if html_charts else '<p style="grid-column: 1/-1; text-align: center; color: #71717a;">Need more data brovki</p>'}
-        </div>
-    </body>
-    </html>
-    """
+html_content = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workout Tracker</title>
+    <style>
+        body {{
+            font-family: "Iosevka", "Iosevka Term", monospace;
+            backgroud: #181818
+            color: #e0e0e0;
+            max-width: 950px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }}
+        h1 {{
+            text-align: center;
+            color: #f43f5e;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }}
+        .meta {{
+            text-align: center;
+            color: #71717a;
+            margin-bottom: 40px;
+            font-size: 0.9rem;
+        }}
+        .grid {{
+            display: grid;
+            grid-template-colums: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 24px;
+        }}
+        .card {{
+            background: #1f1f1f;
+            border: 1px solid #2e2e2e;
+            border-radius: 6px;
+            padding: 20px;
+        }}
+        .card h2 {{
+            margin-top: 0;
+            font-size: 1.15rem;
+            color: #f4f4f5;
+            border-bottom: 1px solid #2e2e2e;
+            padding-bottom: 8px;
+        }}
+        img {{
+            max-width: 100%;
+            display: block
+            margin: 10px auto 0 auto;
+        }}
+    </style>
+</head>
+<body>
+    <h1>WORKOUT_TRACKER</h1>
+    <p class="meta">LAST_SYNC: {datetime.now().strftime('%Y-%m-%d %H:%M')}</p>
+    <div class="grid">
+        {html_charts if html_charts else '<p style="grid-column: 1/-1; text-align: center; color: #71717a;">Need more data brovski</p>'}
+    </div>
+</body>
+</html>
+"""
 
-    with open('public/index.html', 'w', encoding='utf-8') as f:
-        f.write(html_content)
+with open('public/index.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+    f.close()
 
 
