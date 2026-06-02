@@ -24,7 +24,7 @@ for file_path in log_files:
             if excercise_match and current_date:
                 current_excercise = excercise_match.group(1)
                 if current_excercise not in data:
-                    data[current_excercise] = {'dates': [] 'max_weight': []}
+                    data[current_excercise] = {'dates': [], 'max_weight': []}
                 continue
 
             set_match = set_pattern.search(line)
