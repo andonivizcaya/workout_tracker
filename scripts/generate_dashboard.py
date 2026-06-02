@@ -30,7 +30,7 @@ for file_path in log_files:
             set_match = set_pattern.search(line)
             if set_match and current_date and current_excercise:
                 weight = int(set_match.group(1))
-                if (not data[current_excercise['dates']) or (data[current_excercise]['dates'][-1] != current_date):
+                if (not data[current_excercise]['dates']) or (data[current_excercise]['dates'][-1] != current_date):
                     data[current_excercise]['dates'].append(current_date)
                     data[current_excercise]['max_weight'].append(weight)
                 else:
