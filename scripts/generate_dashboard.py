@@ -2,7 +2,7 @@ import os, re, glob
 from datetime import datetime
 import matplotlib.pyplot as plt
 
-log_files = sorted(glob.glob('[0-9][0-9][0-9]][0-9]/[0-9][0-9].md'))
+log_files = sorted(glob.glob('[0-9]*/*.md'))
 
 data = {}
 date_pattern = re.compile(r'### (\d{4}-d{2}-\d{2})')
@@ -11,6 +11,9 @@ set_pattern = re.compile(r'(\d+)kg\s*x\s*(\d+)')
 
 current_date = None
 current_excercise = None
+
+
+print(log_files)
 
 for file_path in log_files:
     with open(file_path, 'r', encoding='utf-8') as f:
